@@ -1,0 +1,23 @@
+VOLLEYAI_DRILL_TEMPLATE_V1.0
+VolleyAI – Drill Criteria & Feedback Template
+Drill Name: Spike Approach & Execution
+Detected Action: Volleyball Spike
+Objective: Evaluate technical execution, timing, and consistency.
+
+Criteria | AI Feedback Style (Coach or AI Notes) | Score (1–5)
+---|---|---
+Approach Footwork | Example: “Your approach steps were smooth, but your last step was slightly short, reducing momentum. Try extending your final step for more power.” | ___
+Jump Height | Example: “You reached 0.52 m on your jump, which is solid for your height. Adding more explosive push from your legs could help you reach 0.58 m.” | ___
+Arm Swing Mechanics | Example: “Your arm swing reached 162° at maximum, which is excellent. Keep your elbow high during the approach to maintain this consistency.” | ___
+Timing with Set | Example: “You contacted the ball 0.12s late compared to peak jump. Adjust your take-off to meet the ball at the highest point.” | ___
+Contact Point | Example: “You hit the ball at 2.41 m, slightly below your max reach of 2.47 m. Extend your arm fully for maximum power.” | ___
+Power and Ball Speed | Example: “Your spike generated an estimated 58 km/h ball speed. Increasing core rotation could push this to 62 km/h.” | ___
+Accuracy | Example: “Target zone hit rate: 67%. Work on aiming toward the deep cross-court to improve scoring chances.” | ___
+Body Control & Landing | Example: “Landing was stable with knees bent — good for injury prevention. Keep both feet aligned to improve balance recovery.” | ___
+Consistency | Example: “8/10 attempts maintained correct form. Focus on matching timing with the set for every attempt.” | ___
+
+AI/Coach Summary
+Overall Score: ___ / 45 (Grade: A / B / C)
+Strengths: __________________________________
+Improvements Needed: _______________________
+Tips: ______________________________________

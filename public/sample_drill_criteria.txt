@@ -1,0 +1,23 @@
+VOLLEYAI_DRILL_TEMPLATE_V1.0
+VolleyAI – Drill Criteria & Feedback Template
+Drill Name: ___________________________
+Detected Action: _______________________
+Objective: _____________________________
+
+Criteria | AI Feedback Style (Coach or AI Notes) | Score (1–5)
+---|---|---
+Approach Footwork | Example: “Approach steps were smooth but final step short. Extend last step for more momentum.” | ___
+Jump Height | Example: “Jump height reached ___m. Aim for ___m by increasing explosive push.” | ___
+Arm Swing Mechanics | Example: “Arm swing reached ___°. Maintain high elbow during approach.” | ___
+Timing with Set | Example: “Contact was ___s late/early. Adjust take-off to meet ball at peak.” | ___
+Contact Point | Example: “Ball contact at ___m vs. max reach ___m. Fully extend arm.” | ___
+Power and Ball Speed | Example: “Spike speed ___ km/h. Increase core rotation for more power.” | ___
+Accuracy | Example: “Target zone hit rate: ___%. Improve aim for deep cross-court shots.” | ___
+Body Control & Landing | Example: “Landing stable/knees bent. Keep feet aligned to improve recovery.” | ___
+Consistency | Example: “___/10 attempts with correct form. Work on timing consistency.” | ___
+
+AI/Coach Summary
+Overall Score: ___ / 45 (Grade: A / B / C)
+Strengths: __________________________________
+Improvements Needed: _______________________
+Tips: ______________________________________
