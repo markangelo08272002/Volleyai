@@ -30,6 +30,10 @@
         }
         .logo-text { font-weight: 800; font-size: 1.5rem; color: #fff; }
 
+        .logo-circular {
+            border-radius: 50%;
+        }
+
         /* This new container will now handle the centering */
         main.auth-container {
             display: flex;

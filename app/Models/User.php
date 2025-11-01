@@ -59,4 +59,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Drill::class);
     }
+    public function players()
+    {
+        return $this->belongsToMany(User::class, 'coach_player', 'coach_id', 'player_id');
+    }
+
+    public function coaches()
+    {
+        return $this->belongsToMany(User::class, 'coach_player', 'player_id', 'coach_id');
+    }
+
 }

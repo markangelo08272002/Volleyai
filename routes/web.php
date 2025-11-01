@@ -5,6 +5,7 @@ use App\Http\Controllers\CoachActivityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VarsityDashboardController;
 use App\Http\Controllers\VarsityDrillController;
+use App\Http\Controllers\CoachController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('role:varsity')->group(function () {
         Route::get('/varsity/drills', [VarsityDrillController::class, 'index'])->name('varsity.drills');
         Route::get('/varsity/dashboard', [VarsityDashboardController::class, 'index'])->name('varsity.dashboard');
+        Route::get('/varsity/sessions', [VarsityDashboardController::class, 'sessions'])->name('varsity.sessions');
 
         // Volleyball Feedback System Routes
         Route::get('/volleyball/upload', [App\Http\Controllers\Volleyball\VolleyballSessionController::class, 'showUploadForm'])->name('volleyball.upload.form');

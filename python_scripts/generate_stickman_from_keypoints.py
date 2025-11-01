@@ -1,73 +1,75 @@
-
-import matplotlib
-matplotlib.use('Agg')
+import json
+import sys
+import os
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
-import json
 
 # Define the connections between body parts to draw the stickman
-# These are the MediaPipe pose connections
-POSE_CONNECTIONS = [
-    (11, 12), (11, 23), (12, 24), (23, 24), (11, 13), (13, 15), (12, 14), (14, 16),
-    (23, 25), (25, 27), (24, 26), (26, 28)
+connections = [
+    ("head", "neck"), ("neck", "torso"),
+    ("neck", "left_shoulder"), ("left_shoulder", "left_elbow"), ("left_elbow", "left_wrist"),
+    ("neck", "right_shoulder"), ("right_shoulder", "right_elbow"), ("right_elbow", "right_wrist"),
+    ("torso", "left_hip"), ("left_hip", "left_knee"), ("left_knee", "left_ankle"),
+    ("torso", "right_hip"), ("right_hip", "right_knee"), ("right_knee", "right_ankle")
 ]
 
-def generate_animation_from_keypoints(keypoints_json_path, output_gif_path):
-    with open(keypoints_json_path, 'r') as f:
-        all_keypoints_data = json.load(f)
+def main(keypoints_path, output_path):
+    with open(keypoints_path, 'r') as f:
+        keypoints_data = json.load(f)
 
+    # Set up the plot
     fig, ax = plt.subplots()
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
     ax.set_aspect('equal', adjustable='box')
     plt.axis('off')
-    ax.set_facecolor('black')
-    fig.set_facecolor('black')
 
-    # Determine the bounds of the animation
-    all_x = [kp['x'] for frame in all_keypoints_data for kp in frame]
-    all_y = [kp['y'] for frame in all_keypoints_data for kp in frame]
-    if not all_x or not all_y:
-        print("No keypoints found in the data.")
-        return
+    # Invert the y-axis
+    ax.invert_yaxis()
 
-    x_min, x_max = min(all_x), max(all_x)
-    y_min, y_max = min(all_y), max(all_y)
-    ax.set_xlim(x_min - 0.1, x_max + 0.1)
-    ax.set_ylim(y_min - 0.1, y_max + 0.1)
-    ax.invert_yaxis() # Invert y-axis to match video coordinates
-
+    # Initialize the plot with the first frame
     lines = []
-    for _ in POSE_CONNECTIONS:
-        line, = ax.plot([], [], 'w-', lw=2)
-        lines.append(line)
+    for conn in connections:
+        part1, part2 = conn
+        
+        # Find the keypoints for the connected parts
+        kp1 = next((kp for kp in keypoints_data[0] if kp['name'] == part1), None)
+        kp2 = next((kp for kp in keypoints_data[0] if kp['name'] == part2), None)
 
-    def update(frame_num, all_frames, lines):
-        frame_data = all_frames[frame_num]
-        landmarks = {kp['id']: kp for kp in frame_data}
+        if kp1 and kp2:
+            line, = ax.plot([kp1['x'], kp2['x']], [kp1['y'], kp2['y']], 'bo-')
+            lines.append(line)
 
-        for i, conn in enumerate(POSE_CONNECTIONS):
-            start_kp = landmarks.get(conn[0])
-            end_kp = landmarks.get(conn[1])
+    # Animation function
+    def update(frame_num, keypoints_data, lines):
+        frame_keypoints = keypoints_data[frame_num]
+        for i, conn in enumerate(connections):
+            part1, part2 = conn
+            
+            kp1 = next((kp for kp in frame_keypoints if kp['name'] == part1), None)
+            kp2 = next((kp for kp in frame_keypoints if kp['name'] == part2), None)
 
-            if start_kp and end_kp and start_kp.get('visibility', 0) > 0.5 and end_kp.get('visibility', 0) > 0.5:
-                lines[i].set_data([start_kp['x'], end_kp['x']], [start_kp['y'], end_kp['y']])
-            else:
-                lines[i].set_data([], []) # Hide the line if keypoints are not visible
+            if kp1 and kp2:
+                lines[i].set_data([kp1['x'], kp2['x']], [kp1['y'], kp2['y']])
         return lines
 
-    ani = animation.FuncAnimation(fig, update, frames=len(all_keypoints_data),
-                                  fargs=(all_keypoints_data, lines), blit=True, interval=50)
+    # Create the animation
+    ani = animation.FuncAnimation(fig, update, frames=len(keypoints_data),
+                                  fargs=(keypoints_data, lines), blit=True, interval=50)
 
+    # Save the animation
     writer = animation.PillowWriter(fps=20)
-    ani.save(output_gif_path, writer=writer)
-    plt.close(fig)
-    print(f"Animation saved to {output_gif_path}")
+    ani.save(output_path, writer=writer)
+
+    print(f"Animation saved to {output_path}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python generate_stickman_from_keypoints.py <keypoints_json_path> <output_gif_path>")
         sys.exit(1)
-
-    keypoints_path = sys.argv[1]
-    output_path = sys.argv[2]
-    generate_animation_from_keypoints(keypoints_path, output_path)
+    
+    keypoints_json_path = sys.argv[1]
+    output_gif_path = sys.argv[2]
+    
+    main(keypoints_json_path, output_gif_path)

@@ -7,7 +7,7 @@
             <img src="https://img.icons8.com/ios-filled/50/007BFF/volleyball.png" style="width:42px;" class="mb-2" alt="VolleyAI Logo" />
         </a>
         <h3 class="fw-bold text-white mb-1">Welcome Back!</h3>
-        <div class="text-muted">Sign in to continue to VolleyAI</div>
+        <div class="text-muted"><span style="color:white";>Sign in to continue to VolleyAI</span></div>
     </div>
 
     <!-- Session Status -->
@@ -76,7 +76,7 @@
         </div>
 
         <div class="text-center mt-2">
-            <span class="text-muted small">Don't have an account?</span>
+            <span class="text-muted small"><span style="color:white;">Don't have an account?</span></span>
             <a href="{{ route('register') }}" class="auth-link">Create one</a>
         </div>
     </form>

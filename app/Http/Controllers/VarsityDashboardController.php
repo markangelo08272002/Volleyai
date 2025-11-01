@@ -12,8 +12,7 @@ class VarsityDashboardController extends Controller
     {
         // Fetch the latest 10 volleyball sessions for the authenticated user using the Eloquent model
         $sessions = VolleyballSession::where('user_id', Auth::id())
-            ->orderByDesc('created_at')
-            ->limit(10)
+            ->orderBy('created_at', 'asc')
             ->get();
 
         $performanceData = [];
@@ -27,10 +26,20 @@ class VarsityDashboardController extends Controller
             ];
         }
 
-        // Reverse the performanceData so the chart displays chronologically
-        $performanceData = array_reverse($performanceData);
-
         // Pass the sessions and performance data to the Blade view
-        return view('varsity.dashboard', compact('sessions', 'performanceData'));
+        return view('varsity.dashboard', compact('performanceData', 'sessions'));
+    }
+
+    public function sessions()
+    {
+        // Fetch all volleyball sessions for the authenticated user using the Eloquent model
+        $sessions = VolleyballSession::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $performanceData = [];
+
+        // Pass the sessions to the Blade view
+        return view('varsity.sessions', compact('sessions', 'performanceData'));
     }
 }

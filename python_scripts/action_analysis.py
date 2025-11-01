@@ -208,6 +208,31 @@ def analyze_keypoints(keypoints_json_path, output_dir, expected_action=None):
     output_data = {"metrics": final_metrics, "llm_prompt": prompt}
     base_name = os.path.splitext(os.path.basename(keypoints_json_path))[0]
     output_json_path = os.path.join(output_dir, f"{base_name}_analysis.json")
+
+    # --- 6. Generate Stickman Animations ---
+    import subprocess
+    perfect_keypoints_path = os.path.join(script_dir, "..", "storage", "app", "public", "videos", "processed", "perfect_spike_keypoints.json")
+    user_animation_path = os.path.join(output_dir, f"{base_name}_user_animation.gif")
+    perfect_animation_path = os.path.join(output_dir, f"{base_name}_perfect_animation.gif")
+
+    if os.path.exists(perfect_keypoints_path):
+        subprocess.run([
+            "python", 
+            os.path.join(script_dir, "generate_stickman_from_keypoints.py"),
+            keypoints_json_path,
+            user_animation_path
+        ])
+        subprocess.run([
+            "python",
+            os.path.join(script_dir, "generate_stickman_from_keypoints.py"),
+            perfect_keypoints_path,
+            perfect_animation_path
+        ])
+        output_data["animations"] = {
+            "user_animation": user_animation_path,
+            "perfect_animation": perfect_animation_path
+        }
+
     with open(output_json_path, 'w') as f:
         json.dump(output_data, f, indent=4)
 

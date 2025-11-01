@@ -47,6 +47,9 @@
         }
         
         .logo-text { font-weight: 800; font-size: 1.5rem; color: #fff; }
+        .logo-circular {
+            border-radius: 50%;
+        }
         .section-title { font-weight: 800; color: #fff; }
         .section-subtitle { font-size: 1.25rem; color: #9ca3af; max-width: 700px; margin: auto; }
 

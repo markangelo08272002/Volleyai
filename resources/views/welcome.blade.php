@@ -34,35 +34,11 @@
 </div>
 
 <div class="text-center mb-5">
-    <h2 class="section-title mb-3">Built for Every Role on the Court</h2>
+    <h2 class="section-title mb-3">Built for Varsity Players and Coaches</h2>
 </div>
 
-<div class="row g-4">
-    <div class="col-md-6 col-lg-3">
-        <div class="role-card">
-            <i class="bi bi-person-check"></i>
-            <h6 class="card-title">Student</h6>
-            <ul class="list-unstyled role-list mt-3 small text-start ps-4">
-                <li>› Video Submissions</li>
-                <li>› Performance Scoring</li>
-                <li>› AI-Generated Feedback</li>
-                <li>› Personal Progress Tracking</li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="role-card">
-            <i class="bi bi-clipboard-data"></i>
-            <h6 class="card-title">PE Instructor</h6>
-            <ul class="list-unstyled role-list mt-3 small text-start ps-4">
-                <li>› Create Drill Assignments</li>
-                <li>› View Student Analytics</li>
-                <li>› Monitor Class Progress</li>
-                <li>› Manage Feedback</li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
+<div class="row g-4 justify-content-center">
+    <div class="col-md-6 col-lg-4">
         <div class="role-card">
             <i class="bi bi-trophy"></i>
             <h6 class="card-title">Varsity Player</h6>
@@ -74,7 +50,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-4">
         <div class="role-card">
             <i class="bi bi-diagram-3"></i>
             <h6 class="card-title">Coach</h6>
